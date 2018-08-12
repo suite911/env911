@@ -2,14 +2,14 @@ package app
 
 import "sync"
 
-var Env *AppEnv
+var Self *App
 
 func Init(args ...interface{}) {
 	mutexPath.Lock(); defer mutexPath.Unlock()
-	if Env != nil {
+	if Self != nil {
 		return
 	}
-	Env = New(args...)
+	Self = New(args...)
 }
 
 var mutexPath sync.Mutex
