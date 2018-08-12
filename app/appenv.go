@@ -1,14 +1,16 @@
 package app
 
-type AppEnv struct {
+import "path/filepath"
+
+type Type struct {
 	vendor, name, path string
 }
 
-func New(args ...interface{}) *AppEnv {
-	return new(AppEnv).Init(args...)
+func New(args ...interface{}) *Type {
+	return new(Type).Init(args...)
 }
 
-func (env *AppEnv) Init(args ...interface{}) *AppEnv {
+func (app *Type) Init(args ...interface{}) *Type {
 	var pathElems []string
 	for _, arg := range args {
 		if str, ok := arg.(string); ok {
@@ -16,25 +18,25 @@ func (env *AppEnv) Init(args ...interface{}) *AppEnv {
 				continue
 			}
 			pathElems = append(pathElems, str)
-			if len(env.vendor) < 1 {
-				env.vendor = env.name
+			if len(app.vendor) < 1 {
+				app.vendor = app.name
 			}
-			env.name = str
+			app.name = str
 		}
 	}
-	env.path = filepath.Join(pathElems)
-	env.osInit(args...)
-	return env
+	app.path = filepath.Join(pathElems)
+	app.osInit(args...)
+	return app
 }
 
-func (env *AppEnv) Name() string {
-	return env.name
+func (app *Type) Name() string {
+	return app.name
 }
 
-func (env *AppEnv) Path() string {
-	return env.path
+func (app *Type) Path() string {
+	return app.path
 }
 
-func (env *AppEnv) Vendor() string {
-	return env.vendor
+func (app *Type) Vendor() string {
+	return app.vendor
 }
