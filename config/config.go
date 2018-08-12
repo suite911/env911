@@ -6,9 +6,16 @@ import (
 
 // Config describes the app configuration.
 type Config struct {
-	// App is the app being configured.
-	App *app.Apper
+	app *app.Apper
+	map_ map[string]interface{}
+}
 
-	// Map is the map of keys to configured values.
-	Map map[string]interface{}
+// App gets the app being configured.
+func (config *Config) App() *app.Apper {
+	return config.app
+}
+
+// Map gets the map of keys to configured values.
+func (config *Config) Map() map[string]interface{} {
+	return config.map_
 }
