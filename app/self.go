@@ -3,7 +3,7 @@ package app
 import "sync"
 
 // Self is this app.
-var Self *App
+var Self Apper
 
 // Cache returns the full path to a local app cache directory.
 func Cache() string {
