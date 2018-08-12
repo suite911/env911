@@ -1,5 +1,6 @@
 package app
 
+// Apper is the interface for an app.
 type Apper interface {
 	Cache()       string
 	Config()      string
