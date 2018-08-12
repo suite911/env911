@@ -23,37 +23,37 @@ func New(args ...interface{}) *App {
 }
 
 // Cache returns the full path to a local app cache directory.
-func (app *App) Cache() string {
+func (app App) Cache() string {
 	return app.cache
 }
 
 // Config returns the full path to a local app config directory.
-func (app *App) Config() string {
+func (app App) Config() string {
 	return app.config
 }
 
 // Data returns the full path to a local app data directory.
-func (app *App) Data() string {
+func (app App) Data() string {
 	return app.data
 }
 
 // Desktop returns the full path to the desktop directory.
-func (app *App) Desktop() string {
+func (app App) Desktop() string {
 	return app.desktop
 }
 
 // Documents returns the full path to the documents directory.
-func (app *App) Documents() string {
+func (app App) Documents() string {
 	return app.documents
 }
 
 // Downloads returns the full path to the downloads directory.
-func (app *App) Downloads() string {
+func (app App) Downloads() string {
 	return app.downloads
 }
 
 // Home returns the full path to the home directory.
-func (app *App) Home() string {
+func (app App) Home() string {
 	return app.home
 }
 
@@ -78,26 +78,26 @@ func (app *App) Init(args ...interface{}) *App {
 }
 
 // Name returns the app name.
-func (app *App) Name() string {
+func (app App) Name() string {
 	return app.name
 }
 
 // Path returns the app path.
-func (app *App) Path() string {
+func (app App) Path() string {
 	return app.path
 }
 
 // Pictures returns the full path to the pictures directory.
-func (app *App) Pictures() string {
+func (app App) Pictures() string {
 	return app.pictures
 }
 
 // Screenshots returns the full path to the screenshots directory.
-func (app *App) Screenshots() string {
+func (app App) Screenshots() string {
 	return app.screenshots
 }
 
 // Vendor returns the app vendor.
-func (app *App) Vendor() string {
+func (app App) Vendor() string {
 	return app.vendor
 }
