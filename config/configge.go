@@ -23,6 +23,12 @@ type Configger interface {
 	// FlagSet gets the flag set used for configuration.
 	FlagSet() Flagger
 
+	// Get gets the value associated with key from the configuration sources
+	Get(key string) interface{}
+
+	// Load loads mappings from the several sources.
+	Load()
+
 	// LoadEnv loads mappings from environment variables.
 	LoadEnv()
 
@@ -105,20 +111,6 @@ func (config Configger) CountVarP(p *int, name, shorthand string, by int, usage 
 	}
 }
 
-// Get gets the value associated with key from the configuration sources
-func (config Configger) Get(key string) interface{} {
-	if v, ok := config.Env(); ok {
-		return v
-	}
-	if v, ok := config.Local(); ok {
-		return v
-	}
-	if v, ok := config.System(); ok {
-		return v
-	}
-	return nil
-}
-
 func (config Configger) Int(name string, value int, usage string) {
 	config.FlagSet().Int(name, value, usage)
 	if config.AutoBind() {
@@ -145,13 +137,6 @@ func (config Configger) IntVarP(p *int, name, shorthand string, value int, usage
 	if config.AutoBind() {
 		config.Bind(name)
 	}
-}
-
-// Load loads mappings from the several sources.
-func (config Configger) Load() {
-	config.LoadSystem()
-	config.LoadLocal()
-	config.LoadEnv()
 }
 
 func (config Configger) String(name, value, usage string) {
