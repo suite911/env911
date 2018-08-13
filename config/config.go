@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/amy911/env911/app"
+	"github.com/amy911/env911/safesave"
 
 	"gopkg.in/yaml.v2"
 )
@@ -136,23 +137,23 @@ func (config *Config) QueueStore(key string, value interface{}) *Config {
 	return config
 }
 
-// Save saves changes to the local configuration file.
+// Save atomically saves changes to the local configuration file.
 func (config *Config) Save() error {
-	f, err := os.Open(config.App().LocalConfigFile)
+	ss, err := safesave.New(config.App().LocalConfigFile(), config.App().LocalConfigNew())
 	if err != nil {
 		return err
 	}
-	enc := yaml.NewEncoder(f)
+	enc := yaml.NewEncoder(ss)
 	if err := enc.Encode(config.local); err != nil {
-		_ = enc.Close()
-		_ = f.Close()
+		enc.Close()
+		ss.Close()
 		return err
 	}
 	if err := enc.Close(); err != nil {
-		_ = f.Close()
+		ss.Close()
 		return err
 	}
-	return f.Close()
+	return ss.Close()
 }
 
 // SetAutoBind sets whether or not to use automatic environment variable binding.
