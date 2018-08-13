@@ -8,8 +8,8 @@ import (
 
 // Config describes the app configuration.
 type Config struct {
-	app  app.Apper
-	flag Flagger
+	app     app.Apper
+	flagSet Flagger
 
 	envPrefix string
 	keys      []string
@@ -20,8 +20,8 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(app app.Apper, flag Flagger, envPrefix string, args ...interface{}) *Config {
-	return new(Config).Init(app, flag, envPrefix, args...)
+func New(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
+	return new(Config).Init(app, flagSet, envPrefix, args...)
 }
 
 // AddEnv adds one or more environment keys from which to read.
@@ -53,9 +53,9 @@ func (config *Config) EnvRaw() []string {
 }
 
 // Init initializes a Config.
-func (config *Config) Init(app app.Apper, flag Flagger, envPrefix string, args ...interface{}) *Config {
+func (config *Config) Init(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
 	config.app = app
-	config.flag = flag
+	config.flagSet = flagSet
 	config.envPrefix = envPrefix
 	config.env = make(map[string]interface{})
 	config.local = make(map[string]interface{})
