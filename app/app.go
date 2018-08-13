@@ -42,6 +42,15 @@ func (app *App) Init(args ...interface{}) *App {
 		}
 	}
 	app.path = filepath.Join(pathElems)
+	exeWithSymlinks, err := os.Executable()
+	app.bin = filepath.Dir(exeWithSymlinks)
+	exeMaybeWithoutSymlinks := exeWithSymlinks
+	if err == nil {
+		if p, err = filepath.EvalSymlinks(exeWithSymlinks); err == nil {
+			exeMaybeWithoutSymlinks = p
+		}
+	}
+	app.exe = exeMaybeWithoutSymlinks
 	app.osInit(args...)
 	app.localConfigFile = filepath.Join(app.localConfig, "config.yml")
 	app.systemConfigFile = filepath.Join(app.systemConfig, "config.yml")
