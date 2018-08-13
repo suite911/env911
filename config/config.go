@@ -26,15 +26,15 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
-	return new(Config).Init(app, flagSet, envPrefix, args...)
+func New(app app.Apper, flagSet Flagger, prefix string, args ...interface{}) *Config {
+	return new(Config).Init(app, flagSet, prefix, args...)
 }
 
 // Init initializes a Config.
-func (config *Config) Init(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
+func (config *Config) Init(app app.Apper, flagSet Flagger, prefix string, args ...interface{}) *Config {
 	config.app = app
 	config.flagSet = flagSet
-	config.envPrefix = envPrefix
+	config.prefix = prefix
 	config.env = make(map[string]interface{})
 	config.local = make(map[string]interface{})
 	config.system = make(map[string]interface{})
