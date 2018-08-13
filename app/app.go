@@ -8,6 +8,7 @@ type App struct {
 
 	cache       string
 	config      string
+	configFile  string
 	data        string
 	desktop     string
 	documents   string
@@ -27,9 +28,14 @@ func (app App) Cache() string {
 	return app.cache
 }
 
-// Config returns the full path to a local app config directory.
+// Config returns the full path to a local app configuration directory.
 func (app App) Config() string {
 	return app.config
+}
+
+// ConfigFile returns the full path to a local app configuration file.
+func (app App) ConfigFile() string {
+	return app.configFile
 }
 
 // Data returns the full path to a local app data directory.
@@ -74,6 +80,7 @@ func (app *App) Init(args ...interface{}) *App {
 	}
 	app.path = filepath.Join(pathElems)
 	app.osInit(args...)
+	app.configFile = filepath.Join(app.config, "config.yml")
 	return app
 }
 
