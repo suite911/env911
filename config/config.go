@@ -54,6 +54,62 @@ func (config *Config) Bind(key string) *Config {
 	return config
 }
 
+func (config *Config) Bool(name string, value bool, usage string) {
+	config.FlagSet().Bool(name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) BoolP(name, shorthand string, value bool, usage string) {
+	config.FlagSet().BoolP(name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) BoolVar(p *bool, name string, value bool, usage string) {
+	config.FlagSet().BoolVar(p, name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
+	config.FlagSet().BoolVarP(p, name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) Count(name string, by int, usage string) {
+	config.FlagSet().Count(name, by, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) CountP(name, shorthand string, by int, usage string) {
+	config.FlagSet().CountP(name, shorthand, by, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) CountVar(p *int, name string, by int, usage string) {
+	config.FlagSet().CountVar(p, name, by, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) CountVarP(p *int, name, shorthand string, by int, usage string) {
+	config.FlagSet().CountVarP(p, name, shorthand, by, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
 // Env gets the map of keys to values configured via environment variables.
 func (config *Config) Env() map[string]interface{} {
 	return config.env
@@ -78,12 +134,45 @@ func (config *Config) Get(key string) interface{} {
 	return nil
 }
 
+func (config *Config) Int(name string, value int, usage string) {
+	config.FlagSet().Int(name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) IntP(name, shorthand string, value int, usage string) {
+	config.FlagSet().IntP(name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) IntVar(p *int, name string, value int, usage string) {
+	config.FlagSet().IntVar(p, name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) IntVarP(p *int, name, shorthand string, value int, usage string) {
+	config.FlagSet().IntVarP(p, name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
 // Load loads mappings from the several sources.
 func (config *Config) Load() *Config {
 	config.LoadSystem()
 	config.LoadLocal()
 	config.LoadEnv()
 	return config
+}
+
+func (config *Config) LoadAndParse() {
+	config.Load()
+	config.Parse(os.Args)
 }
 
 // LoadEnv loads mappings from environment variables.
@@ -166,6 +255,34 @@ func (config *Config) SetAutoBind(value bool) *Config {
 func (config *Config) SetPrefix(value string) *Config {
 	config.prefix = value
 	return config
+}
+
+func (config *Config) String(name, value, usage string) {
+	config.FlagSet().String(name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) StringP(name, shorthand, value string, usage string) {
+	config.FlagSet().StringP(name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) StringVar(p *string, name, value, usage string) {
+	config.FlagSet().StringVar(p, name, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
+}
+
+func (config *Config) StringVarP(p *string, name, shorthand, value string, usage string) {
+	config.FlagSet().StringVarP(p, name, shorthand, value, usage)
+	if config.AutoBind() {
+		config.Bind(name)
+	}
 }
 
 // System gets the map of keys to values configured system-wide.
