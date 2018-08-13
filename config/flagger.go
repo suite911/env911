@@ -10,6 +10,7 @@ type Flagger interface {
 	CountP(string, string, int, string)
 	CountVar(*int, string, int, string)
 	CountVarP(*int, string, string, int, string)
+	CountWorks() bool
 	Int(string, int, string)
 	IntP(string, string, int, string)
 	IntVar(*int, string, int, string)
