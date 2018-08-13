@@ -1,11 +1,6 @@
 package config
 
-import (
-	"github.com/amy911/amy911/onfail"
-	"github.com/amy911/env911/app"
-
-	"github.com/ogier/pflag"
-)
+import "github.com/ogier/pflag"
 
 type PFlag struct {
 	pflag.FlagSet
