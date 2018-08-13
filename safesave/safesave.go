@@ -24,18 +24,30 @@ func (save *SafeSave) Init(real, temp string) (*SafeSave, error) {
 		return nil, err
 	}
 
+	info, err := os.Stat(real)
+	if err != nil {
+		return err
+	}
+
+	if err := os.Chmod(save.temp.Name(), info.Mode()); err != nil {
+		return err
+	}
+
 	save.ok = true
 	return save, nil
 }
 
 func (save SafeSave) Close() error {
 	if !save.ok {
+		save.temp.Close()
+		os.Remove(save.temp) // Do not defer this!*
 		return errors.New("Open or write failed")
 	}
 
 	// The write was successful, but the temporary file is still open
 
 	if err := save.temp.Close(); err != nil {
+		os.Remove(save.temp) // Do not defer this!*
 		return err
 	}
 
@@ -43,6 +55,7 @@ func (save SafeSave) Close() error {
 
 	os.Remove(save.real)
 	if err := os.Rename(save.temp.Name(), save.real); err != nil {
+		// *Do not remove the temporary file here, it is all the user has left!
 		return err
 	}
 
