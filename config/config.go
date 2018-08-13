@@ -119,6 +119,11 @@ func (config *Config) Local() map[string]interface{} {
 	return config.local
 }
 
+// Parse parses flags on the command line.
+func (config *Config) Parse(arguments []string) error {
+	return config.FlagSet().Parse(arguments)
+}
+
 // Prefix gets the environment variable prefix.
 func (config *Config) Prefix() string {
 	return config.prefix
