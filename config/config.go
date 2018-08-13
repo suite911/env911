@@ -122,13 +122,13 @@ func (config *Config) FlagSet() Flagger {
 
 // Get gets the value associated with key from the configuration sources
 func (config *Config) Get(key string) interface{} {
-	if v, ok := config.Env(); ok {
+	if v, ok := config.Env()[key]; ok {
 		return v
 	}
-	if v, ok := config.Local(); ok {
+	if v, ok := config.Local()[key]; ok {
 		return v
 	}
-	if v, ok := config.System(); ok {
+	if v, ok := config.System()[key]; ok {
 		return v
 	}
 	return nil
