@@ -1,5 +1,11 @@
 package safesave
 
+import (
+	"os"
+	"path/filepath"
+	"strconv"
+)
+
 type SafeSave struct {
 	real string
 	temp *os.File
