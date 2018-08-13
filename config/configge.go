@@ -53,29 +53,29 @@ func (config Configger) BoolVarP(p *bool, name, shorthand string, value bool, us
 	}
 }
 
-func (config Configger) Count(name string, value bool, usage string) {
-	config.Flag().Count(name, value, usage)
+func (config Configger) Count(name string, usage string) {
+	config.Flag().Count(name, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountP(name, shorthand string, value bool, usage string) {
-	config.Flag().CountP(name, shorthand value, usage)
+func (config Configger) CountP(name, shorthand string, usage string) {
+	config.Flag().CountP(name, shorthand usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountVar(p *int, name string, value bool, usage string) {
-	config.Flag().CountVar(p, name, value, usage)
+func (config Configger) CountVar(p *int, name string, usage string) {
+	config.Flag().CountVar(p, name, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountVarP(p *int, name, shorthand string, value bool, usage string) {
-	config.Flag().CountVarP(p, name, shorthand, value, usage)
+func (config Configger) CountVarP(p *int, name, shorthand string, usage string) {
+	config.Flag().CountVarP(p, name, shorthand, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
