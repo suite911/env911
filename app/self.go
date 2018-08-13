@@ -13,7 +13,7 @@ func Init(app Apper, onFail ...onfail.OnFail) {
 		onfail.Fail("Double init", self, onfail.Panic, onFail)
 		return
 	}
-	self = config
+	self = app
 }
 
 // Cache returns the full path to a local app cache directory.
