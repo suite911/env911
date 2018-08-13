@@ -36,6 +36,9 @@ type Apper interface {
 	// LocalConfigFile gets the full path to the local app configuration file.
 	LocalConfigFile() string
 
+	// LocalConfigNew returns the full path to a write in-progress copy of the local app configuration file.
+	LocalConfigNew() string
+
 	// Path gets the app path.
 	Path() string
 
