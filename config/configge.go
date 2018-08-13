@@ -52,7 +52,7 @@ type Configger interface {
 	// QueueStore queues a single key-value pair for storage into the local configuration file upon the next call to Save.
 	QueueStore(string, interface{}) Configger
 
-	// Save saves changes to the local configuration file.
+	// Save atomically saves changes to the local configuration file.
 	Save() error
 
 	// SetAutoBind sets whether or not to use automatic environment variable binding.
