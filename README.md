@@ -1,5 +1,5 @@
-![api-alpha](https://rawgit.com/amy911/assets/master/shields/api-alpha-orange.svg)
-![abi-unstable](https://rawgit.com/amy911/assets/master/shields/abi-unstable-red.svg)
+![api-candidate](https://rawgit.com/amy911/assets/master/shields/api-candidate-green.svg)
+![abi-alpha](https://rawgit.com/amy911/assets/master/shields/abi-alpha-orange.svg)
 [![Build Status](https://travis-ci.org/amy911/env911.svg?branch=master)](https://travis-ci.org/amy911/env911)
 [![CC0-1.0](https://rawgit.com/amy911/assets/master/shields/license-cc0--1.0-efbfff.svg)](https://raw.githubusercontent.com/amy911/cloud911/master/LICENSE.txt)
 
