@@ -1,6 +1,7 @@
 package safesave
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"strconv"
