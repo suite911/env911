@@ -25,6 +25,27 @@ func New(args ...interface{}) *App {
 	return new(App).Init(args...)
 }
 
+// Init initializes an App.
+func (app *App) Init(args ...interface{}) *App {
+	var pathElems []string
+	for _, arg := range args {
+		if str, ok := arg.(string); ok {
+			if len(str) < 1 {
+				continue
+			}
+			pathElems = append(pathElems, str)
+			if len(app.vendor) < 1 {
+				app.vendor = app.name
+			}
+			app.name = str
+		}
+	}
+	app.path = filepath.Join(pathElems)
+	app.osInit(args...)
+	app.configFile = filepath.Join(app.config, "config.yml")
+	return app
+}
+
 // Cache returns the full path to a local app cache directory.
 func (app App) Cache() string {
 	return app.cache
@@ -53,27 +74,6 @@ func (app App) Downloads() string {
 // Home returns the full path to the home directory.
 func (app App) Home() string {
 	return app.home
-}
-
-// Init initializes an App.
-func (app *App) Init(args ...interface{}) *App {
-	var pathElems []string
-	for _, arg := range args {
-		if str, ok := arg.(string); ok {
-			if len(str) < 1 {
-				continue
-			}
-			pathElems = append(pathElems, str)
-			if len(app.vendor) < 1 {
-				app.vendor = app.name
-			}
-			app.name = str
-		}
-	}
-	app.path = filepath.Join(pathElems)
-	app.osInit(args...)
-	app.configFile = filepath.Join(app.config, "config.yml")
-	return app
 }
 
 // LocalConfig returns the full path to a local app configuration directory.
