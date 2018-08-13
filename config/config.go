@@ -9,9 +9,12 @@ import (
 // Config describes the app configuration.
 type Config struct {
 	app       app.Apper
-	env       []string
+	envKeys   []string
 	envPrefix string
-	map_      map[string]interface{}
+
+	env    map[string]interface{}
+	local  map[string]interface{}
+	system map[string]interface{}
 }
 
 // New creates a new Config.
@@ -21,7 +24,7 @@ func New(app app.Apper, envPrefix string, args ...interface{}) *Config {
 
 // AddEnv adds one or more environment keys from which to read.
 func (config *Config) AddEnv(keys ...string) {
-	config.env = append(config.env, keys)
+	config.envKeys = append(config.envKeys, keys)
 }
 
 // App gets the app being configured.
@@ -31,20 +34,20 @@ func (config *Config) App() app.Apper {
 
 // Env gets the environment keys to read being configured.
 func (config *Config) Env() []string {
-	var env []string
-	for _, k := range config.env {
-		env = append(env, config.envPrefix+strings.ToUpper(k))
+	var envKeys []string
+	for _, k := range config.envKeys {
+		envKeys = append(envKeys, config.envPrefix+strings.ToUpper(k))
 	}
-	return env
+	return envKeys
 }
 
 // EnvRaw gets the unmodified environment keys to read being configured.
 func (config *Config) EnvRaw() []string {
-	var env []string
-	for _, k := range config.env {
-		env = append(env, k)
+	var envKeys []string
+	for _, k := range config.envKeys {
+		envKeys = append(envKeys, k)
 	}
-	return env
+	return envKeys
 }
 
 // Init initializes a Config.
@@ -56,18 +59,18 @@ func (config *Config) Init(app app.Apper, envPrefix string, args ...interface{})
 }
 
 // LoadConfig loads mappings from the configuration file.
-func (config *Config) LoadConfig() error {
-	f, err := os.Open(config.App().ConfigFile())
+func (config *Config) LoadConfigFile(m map[string]interface{}, path string, onFail ...onfail.OnFail) error {
+	f, err := os.Open(path)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-	return yaml.NewDecoder(f).Decode(config.map_)
+	return yaml.NewDecoder(f).Decode(m)
 }
 
 // LoadEnv loads mappings from the environment.
-func (config *Config) LoadEnv() {
-	for _, k := range config.env {
+func (config *Config) LoadEnv(m map[string]interface{}, onFail ...onfail.OnFail) {
+	for _, k := range config.envKeys {
 		if v := os.Getenv(config.envPrefix+strings.ToUpper(k)); len(v) > 0 {
 			config.map_[k] = v
 		}
