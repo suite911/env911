@@ -1,9 +1,20 @@
 package app
 
-import "sync"
+import (
+	"sync"
 
-// Self is this app.
-var Self Apper
+	"github.com/amy911/amy911/onfail"
+)
+
+// Init initializes this app.
+func Init(app Apper, onFail ...onfail.OnFail) {
+	mutex.Lock(); defer mutex.Unlock()
+	if self != nil {
+		onfail.Fail("Double init", self, onfail.Panic, onFail)
+		return
+	}
+	self = config
+}
 
 // Cache returns the full path to a local app cache directory.
 func Cache() string {
@@ -40,15 +51,6 @@ func Home() string {
 	return app.Self.Home()
 }
 
-// Init initializes this app.
-func Init(args ...interface{}) {
-	mutexPath.Lock(); defer mutexPath.Unlock()
-	if Self != nil {
-		return
-	}
-	Self = New(args...)
-}
-
 // Name returns the app name.
 func Name() string {
 	return app.Self.Name()
@@ -74,4 +76,5 @@ func Vendor() string {
 	return app.Self.Vendor()
 }
 
-var mutexPath sync.Mutex
+var self Apper
+var mutex sync.Mutex
