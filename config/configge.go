@@ -15,7 +15,7 @@ type Configger interface {
 	Env() map[string]interface{}
 
 	// Flag gets the Flagger used for configuration.
-	Flag() Flagger
+	FlagSet() Flagger
 
 	// Local gets the map of keys to values configured locally.
 	Local() map[string]interface{}
@@ -26,56 +26,56 @@ type Configger interface {
 }
 
 func (config Configger) Bool(name string, value bool, usage string) {
-	config.Flag().Bool(name, value, usage)
+	config.FlagSet().Bool(name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) BoolP(name, shorthand string, value bool, usage string) {
-	config.Flag().BoolP(name, shorthand value, usage)
+	config.FlagSet().BoolP(name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) BoolVar(p *bool, name string, value bool, usage string) {
-	config.Flag().BoolVar(p, name, value, usage)
+	config.FlagSet().BoolVar(p, name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
-	config.Flag().BoolVarP(p, name, shorthand, value, usage)
+	config.FlagSet().BoolVarP(p, name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) Count(name string, usage string) {
-	config.Flag().Count(name, usage)
+func (config Configger) Count(name string, by int, usage string) {
+	config.FlagSet().Count(name, by, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountP(name, shorthand string, usage string) {
-	config.Flag().CountP(name, shorthand usage)
+func (config Configger) CountP(name, shorthand string, by int, usage string) {
+	config.FlagSet().CountP(name, shorthand, by, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountVar(p *int, name string, usage string) {
-	config.Flag().CountVar(p, name, usage)
+func (config Configger) CountVar(p *int, name string, by int, usage string) {
+	config.FlagSet().CountVar(p, name, by, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
-func (config Configger) CountVarP(p *int, name, shorthand string, usage string) {
-	config.Flag().CountVarP(p, name, shorthand, usage)
+func (config Configger) CountVarP(p *int, name, shorthand string, by int, usage string) {
+	config.FlagSet().CountVarP(p, name, shorthand, by, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
@@ -96,28 +96,28 @@ func (config Configger) Get(key string) interface{} {
 }
 
 func (config Configger) Int(name string, value int, usage string) {
-	config.Flag().Int(name, value, usage)
+	config.FlagSet().Int(name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) IntP(name, shorthand string, value int, usage string) {
-	config.Flag().IntP(name, shorthand value, usage)
+	config.FlagSet().IntP(name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) IntVar(p *int, name string, value int, usage string) {
-	config.Flag().IntVar(p, name, value, usage)
+	config.FlagSet().IntVar(p, name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) IntVarP(p *int, name, shorthand string, value int, usage string) {
-	config.Flag().IntVarP(p, name, shorthand, value, usage)
+	config.FlagSet().IntVarP(p, name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
@@ -131,28 +131,28 @@ func (config Configger) Load(onFail ...onfail.OnFail) error {
 }
 
 func (config Configger) String(name, value, usage string) {
-	config.Flag().String(name, value, usage)
+	config.FlagSet().String(name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) StringP(name, shorthand, value string, usage string) {
-	config.Flag().StringP(name, shorthand value, usage)
+	config.FlagSet().StringP(name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) StringVar(p *string, name, value, usage string) {
-	config.Flag().StringVar(p, name, value, usage)
+	config.FlagSet().StringVar(p, name, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
 }
 
 func (config Configger) StringVarP(p *string, name, shorthand, value string, usage string) {
-	config.Flag().StringVarP(p, name, shorthand, value, usage)
+	config.FlagSet().StringVarP(p, name, shorthand, value, usage)
 	if config.AutomaticEnv() {
 		config.AddKey(name)
 	}
