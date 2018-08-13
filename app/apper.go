@@ -3,6 +3,9 @@ package app
 // Apper is the interface for an app.
 type Apper interface {
 
+	// Bin returns the full path to the directory in which the running executable is located.
+	Bin() string
+
 	// Cache gets the full path to the local app cache directory.
 	Cache() string
 
