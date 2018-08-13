@@ -15,6 +15,7 @@ type App struct {
 	home             string
 	localConfig      string
 	localConfigFile  string
+	localConfigNew   string
 	man              string
 	pictures         string
 	screenshots      string
@@ -106,6 +107,11 @@ func (app App) LocalConfig() string {
 // LocalConfigFile returns the full path to a local app configuration file.
 func (app App) LocalConfigFile() string {
 	return app.localConfigFile
+}
+
+// LocalConfigNew returns the full path to a write in-progress copy of the local app configuration file.
+func (app App) LocalConfigNew() string {
+	return app.localConfigNew
 }
 
 // Name returns the app name.
