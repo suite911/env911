@@ -29,7 +29,7 @@ type Configger interface {
 	Get(key string) interface{}
 
 	// Load loads mappings from the several sources.
-	Load()
+	Load() Configger
 
 	// LoadEnv loads mappings from environment variables.
 	LoadEnv()
@@ -49,11 +49,17 @@ type Configger interface {
 	// Prefix gets the environment variable prefix.
 	Prefix() string
 
+	// Save saves changes to the local configuration file.
+	Save() Configger
+
 	// SetAutoBind sets whether or not to use automatic environment variable binding.
 	SetAutoBind(bool) Configger
 
 	// SetPrefix sets the environment variable prefix.
 	SetPrefix(string) Configger
+
+	// Store stores a single key-value pair into the local configuration file.
+	Store(string, interface{}) Configger
 
 	// System gets the map of keys to values configured system-wide.
 	System() map[string]interface{}
