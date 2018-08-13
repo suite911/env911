@@ -19,6 +19,13 @@ func (app *App) osInit(args ...interface{}) {
 			localappdata = filepath.Join(home, ".local", "share")
 		}
 	}
+	programData := os.Getenv("ProgramData")
+	if len(programData) < 1 {
+		programData = os.Getenv("ALLUSERSPROFILE")
+		if len(programData) < 1 {
+			programData = `C:\ProgramData`
+		}
+	}
 	xdg_cache_home := os.Getenv("XDG_CACHE_HOME")
 	if len(xdg_cache_home) < 1 {
 		xdg_cache_home = filepath.Join(localappdata, "Microsoft", "Windows", "Temporary Internet Files")
@@ -33,12 +40,13 @@ func (app *App) osInit(args ...interface{}) {
 	}
 
 	app.cache = filepath.Join(xdg_cache_home, app.path)
-	app.config = filepath.Join(xdg_config_home, app.path)
 	app.data = filepath.Join(xdg_data_home, app.path)
 	app.desktop = filepath.Join(home, "Desktop")
 	app.documents = filepath.Join(home, "Documents")
 	app.downloads = filepath.Join(home, "Downloads")
 	app.home = home
+	app.localConfig = filepath.Join(xdg_config_home, app.path)
 	app.pictures = filepath.Join(home, "Pictures")
 	app.screenshots = filepath.Join(app.pictures, "Screenshots")
+	app.systemConfig = filepath.Join(programData, app.path)
 }
