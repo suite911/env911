@@ -15,6 +15,7 @@ type App struct {
 	home             string
 	localConfig      string
 	localConfigFile  string
+	man              string
 	pictures         string
 	screenshots      string
 	systemConfig     string
@@ -90,6 +91,11 @@ func (app App) Downloads() string {
 // Home returns the full path to the home directory.
 func (app App) Home() string {
 	return app.home
+}
+
+// Man gets the full path to the man directory.
+func (app App) Man() string {
+	return app.man
 }
 
 // LocalConfig returns the full path to a local app configuration directory.
