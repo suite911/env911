@@ -41,6 +41,9 @@ type Configger interface {
 	// Local gets the map of keys to values configured locally.
 	Local() map[string]interface{}
 
+	// Parse parses flags on the command line.
+	Parse(arguments []string) error
+
 	// Prefix gets the environment variable prefix.
 	Prefix() string
 
@@ -137,6 +140,11 @@ func (config Configger) IntVarP(p *int, name, shorthand string, value int, usage
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+}
+
+func (config Configger) LoadAndParse() {
+	config.Load()
+	config.Parse(os.Args)
 }
 
 func (config Configger) String(name, value, usage string) {
