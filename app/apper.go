@@ -6,8 +6,11 @@ type Apper interface {
 	// Cache gets the full path to the local app cache directory.
 	Cache() string
 
-	// Config gets the full path to the local app config directory.
+	// Config gets the full path to the local app configuration directory.
 	Config() string
+
+	// ConfigFile gets the full path to the local app configuration file.
+	ConfigFile() string
 
 	// Data gets the full path to the local app data directory.
 	Data() string
