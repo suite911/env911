@@ -18,62 +18,67 @@ func Init(app Apper, onFail ...onfail.OnFail) {
 
 // Cache returns the full path to a local app cache directory.
 func Cache() string {
-	return app.Self.Cache()
+	return self.Cache()
 }
 
 // Config returns the full path to a local app config directory.
 func Config() string {
-	return app.Self.Config()
+	return self.Config()
 }
 
 // Data returns the full path to a local app data directory.
 func Data() string {
-	return app.Self.Data()
+	return self.Data()
 }
 
 // Desktop returns the full path to the desktop directory.
 func Desktop() string {
-	return app.Self.Desktop()
+	return self.Desktop()
 }
 
 // Documents returns the full path to the documents directory.
 func Documents() string {
-	return app.Self.Documents()
+	return self.Documents()
 }
 
 // Downloads returns the full path to the downloads directory.
 func Downloads() string {
-	return app.Self.Downloads()
+	return self.Downloads()
 }
 
 // Home returns the full path to the home directory.
 func Home() string {
-	return app.Self.Home()
+	return self.Home()
+}
+
+// Man returns the full path to the man directory.
+func Man() string {
+	return self.Man()
 }
 
 // Name returns the app name.
 func Name() string {
-	return app.Self.Name()
+	return self.Name()
 }
 
 // Path returns the app path.
 func Path() string {
-	return app.Self.Path()
+	return self.Path()
 }
 
 // Pictures returns the full path to the pictures directory.
 func Pictures() string {
-	return app.Self.Pictures()
+	return self.Pictures()
 }
 
 // Screenshots returns the full path to the screenshots directory.
 func Screenshots() string {
-	return app.Self.Screenshots()
+	return self.Screenshots()
 }
 
 // Vendor returns the app vendor.
 func Vendor() string {
-	return app.Self.Vendor()
+	return self.Vendor()
 }
 
 var self Apper
