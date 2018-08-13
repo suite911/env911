@@ -21,6 +21,9 @@ type Apper interface {
 	// Downloads gets the full path to the current user's Downloads directory.
 	Downloads() string
 
+	// Exe returns the full path to the running executable after attempting to expand symlinks.
+	Exe() string
+
 	// Home gets the full path to the current user's Home directory.
 	Home() string
 
