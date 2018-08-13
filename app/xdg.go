@@ -1,4 +1,4 @@
-// +build dragonfly freebsd linux netbsd openbsd solaris
+// +build android dragonfly freebsd linux netbsd openbsd plan9 solaris
 
 package app
 
@@ -32,7 +32,8 @@ func (app *App) osInit(args ...interface{}) {
 	app.downloads = filepath.Join(home, "Downloads")
 	app.home = home
 	app.localConfig = filepath.Join(xdg_config_home, app.path)
+	app.man = SystemPath(app.bin, "man")
 	app.pictures = filepath.Join(home, "Pictures")
 	app.screenshots = filepath.Join(app.pictures, "Screenshots")
-	app.systemConfig = filepath.Join(share(app.exedir), app.path)
+	app.systemConfig = filepath.Join(SystemPath(app.bin, "share"), app.path)
 }
