@@ -190,7 +190,7 @@ func (config *Config) LoadEnv() {
 
 // LoadLocal loads mappings from the local configuration file.
 func (config *Config) LoadLocal() error {
-	f, err := os.Open(config.App().LocalConfigFile)
+	f, err := os.Open(config.App().LocalConfigFile())
 	if err != nil {
 		return err
 	}
@@ -200,7 +200,7 @@ func (config *Config) LoadLocal() error {
 
 // LoadSystem loads mappings from the system configuration file.
 func (config *Config) LoadSystem() error {
-	f, err := os.Open(config.App().SystemConfigFile)
+	f, err := os.Open(config.App().SystemConfigFile())
 	if err != nil {
 		return err
 	}
