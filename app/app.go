@@ -42,7 +42,8 @@ func (app *App) Init(args ...interface{}) *App {
 	}
 	app.path = filepath.Join(pathElems)
 	app.osInit(args...)
-	app.configFile = filepath.Join(app.config, "config.yml")
+	app.localConfigFile = filepath.Join(app.localConfig, "config.yml")
+	app.systemConfigFile = filepath.Join(app.systemConfig, "config.yml")
 	return app
 }
 
