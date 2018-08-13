@@ -8,9 +8,11 @@ import (
 
 // Config describes the app configuration.
 type Config struct {
-	app       app.Apper
-	envKeys   []string
+	app  app.Apper
+	flag Flagger
+
 	envPrefix string
+	keys      []string
 
 	env    map[string]interface{}
 	local  map[string]interface{}
@@ -18,13 +20,13 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(app app.Apper, envPrefix string, args ...interface{}) *Config {
-	return new(Config).Init(app, envPrefix, args...)
+func New(app app.Apper, flag Flagger, envPrefix string, args ...interface{}) *Config {
+	return new(Config).Init(app, flag, envPrefix, args...)
 }
 
 // AddEnv adds one or more environment keys from which to read.
 func (config *Config) AddEnv(keys ...string) {
-	config.envKeys = append(config.envKeys, keys)
+	config.keys = append(config.keys, keys)
 }
 
 // App gets the app being configured.
@@ -34,27 +36,30 @@ func (config *Config) App() app.Apper {
 
 // Env gets the environment keys to read being configured.
 func (config *Config) Env() []string {
-	var envKeys []string
-	for _, k := range config.envKeys {
-		envKeys = append(envKeys, config.envPrefix+strings.ToUpper(k))
+	var keys []string
+	for _, k := range config.keys {
+		keys = append(keys, config.envPrefix+strings.ToUpper(k))
 	}
-	return envKeys
+	return keys
 }
 
 // EnvRaw gets the unmodified environment keys to read being configured.
 func (config *Config) EnvRaw() []string {
-	var envKeys []string
-	for _, k := range config.envKeys {
-		envKeys = append(envKeys, k)
+	var keys []string
+	for _, k := range config.keys {
+		keys = append(keys, k)
 	}
-	return envKeys
+	return keys
 }
 
 // Init initializes a Config.
-func (config *Config) Init(app app.Apper, envPrefix string, args ...interface{}) *Config {
+func (config *Config) Init(app app.Apper, flag Flagger, envPrefix string, args ...interface{}) *Config {
 	config.app = app
+	config.flag = flag
 	config.envPrefix = envPrefix
-	config.map_ = make(map[string]interface{})
+	config.env = make(map[string]interface{})
+	config.local = make(map[string]interface{})
+	config.system = make(map[string]interface{})
 	return config
 }
 
@@ -70,14 +75,24 @@ func (config *Config) LoadConfigFile(m map[string]interface{}, path string, onFa
 
 // LoadEnv loads mappings from the environment.
 func (config *Config) LoadEnv(m map[string]interface{}, onFail ...onfail.OnFail) {
-	for _, k := range config.envKeys {
+	for _, k := range config.keys {
 		if v := os.Getenv(config.envPrefix+strings.ToUpper(k)); len(v) > 0 {
 			config.map_[k] = v
 		}
 	}
 }
 
-// Map gets the map of keys to configured values.
-func (config *Config) Map() map[string]interface{} {
-	return config.map_
+// Env gets the map of keys to values configured via environment variables.
+func (config *Config) Env() map[string]interface{} {
+	return config.env
+}
+
+// Local gets the map of keys to values configured locally
+func (config *Config) Local() map[string]interface{} {
+	return config.local
+}
+
+// System gets the map of keys to values configured system-wide
+func (config *Config) System() map[string]interface{} {
+	return config.system
 }
