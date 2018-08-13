@@ -6,16 +6,18 @@ import "path/filepath"
 type App struct {
 	vendor, name, path string
 
-	cache       string
-	config      string
-	configFile  string
-	data        string
-	desktop     string
-	documents   string
-	downloads   string
-	home        string
-	pictures    string
-	screenshots string
+	cache            string
+	data             string
+	desktop          string
+	documents        string
+	downloads        string
+	home             string
+	localConfig      string
+	localConfigFile  string
+	pictures         string
+	screenshots      string
+	systemConfig     string
+	systemConfigFile string
 }
 
 // New creates a new App.
@@ -26,16 +28,6 @@ func New(args ...interface{}) *App {
 // Cache returns the full path to a local app cache directory.
 func (app App) Cache() string {
 	return app.cache
-}
-
-// Config returns the full path to a local app configuration directory.
-func (app App) Config() string {
-	return app.config
-}
-
-// ConfigFile returns the full path to a local app configuration file.
-func (app App) ConfigFile() string {
-	return app.configFile
 }
 
 // Data returns the full path to a local app data directory.
@@ -84,6 +76,16 @@ func (app *App) Init(args ...interface{}) *App {
 	return app
 }
 
+// LocalConfig returns the full path to a local app configuration directory.
+func (app App) LocalConfig() string {
+	return app.localConfig
+}
+
+// LocalConfigFile returns the full path to a local app configuration file.
+func (app App) LocalConfigFile() string {
+	return app.localConfigFile
+}
+
 // Name returns the app name.
 func (app App) Name() string {
 	return app.name
@@ -102,6 +104,16 @@ func (app App) Pictures() string {
 // Screenshots returns the full path to the screenshots directory.
 func (app App) Screenshots() string {
 	return app.screenshots
+}
+
+// SystemConfig returns the full path to a system app configuration directory.
+func (app App) SystemConfig() string {
+	return app.systemConfig
+}
+
+// SystemConfigFile returns the full path to a system app configuration file.
+func (app App) SystemConfigFile() string {
+	return app.systemConfigFile
 }
 
 // Vendor returns the app vendor.
