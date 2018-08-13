@@ -1,6 +1,9 @@
 package app
 
-import "path/filepath"
+import (
+	"os"
+	"path/filepath"
+)
 
 // App is the type of an app.
 type App struct {
@@ -12,6 +15,7 @@ type App struct {
 	desktop          string
 	documents        string
 	downloads        string
+	exe              string
 	home             string
 	localConfig      string
 	localConfigFile  string
@@ -43,11 +47,12 @@ func (app *App) Init(args ...interface{}) *App {
 			app.name = str
 		}
 	}
-	app.path = filepath.Join(pathElems)
+	app.path = filepath.Join(pathElems...)
 	exeWithSymlinks, err := os.Executable()
 	app.bin = filepath.Dir(exeWithSymlinks)
 	exeMaybeWithoutSymlinks := exeWithSymlinks
 	if err == nil {
+		var p string
 		if p, err = filepath.EvalSymlinks(exeWithSymlinks); err == nil {
 			exeMaybeWithoutSymlinks = p
 		}
@@ -88,6 +93,11 @@ func (app App) Documents() string {
 // Downloads returns the full path to the downloads directory.
 func (app App) Downloads() string {
 	return app.downloads
+}
+
+// Exe returns the full path to the running executable after attempting to expand symlinks.
+func (app App) Exe() string {
+	return app.exe
 }
 
 // Home returns the full path to the home directory.
