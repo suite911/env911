@@ -26,6 +26,17 @@ func New(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) 
 	return new(Config).Init(app, flagSet, envPrefix, args...)
 }
 
+// Init initializes a Config.
+func (config *Config) Init(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
+	config.app = app
+	config.flagSet = flagSet
+	config.envPrefix = envPrefix
+	config.env = make(map[string]interface{})
+	config.local = make(map[string]interface{})
+	config.system = make(map[string]interface{})
+	return config
+}
+
 // App gets the app being configured.
 func (config *Config) App() app.Apper {
 	return config.app
@@ -50,6 +61,36 @@ func (config *Config) Env() map[string]interface{} {
 // FlagSet gets the flag set used for configuration.
 func (config *Config) FlagSet() Flagger {
 	return config.flagSet
+}
+
+// LoadEnv loads mappings from environment variables.
+func (config *Config) LoadEnv() {
+	for _, key := range config.keys {
+		k := strings.ToUpper(key[0] + key[1])
+		if v := os.Getenv(k); len(v) > 0 {
+			config.env[key[1]] = v
+		}
+	}
+}
+
+// LoadLocal loads mappings from the local configuration file.
+func (config *Config) LoadLocal() error {
+	f, err := os.Open(config.App().LocalConfigFile)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	return yaml.NewDecoder(f).Decode(config.local)
+}
+
+// LoadSystem loads mappings from the system configuration file.
+func (config *Config) LoadSystem() error {
+	f, err := os.Open(config.App().SystemConfigFile)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	return yaml.NewDecoder(f).Decode(config.system)
 }
 
 // Local gets the map of keys to values configured locally.
@@ -77,61 +118,4 @@ func (config *Config) SetPrefix(value string) *Config {
 // System gets the map of keys to values configured system-wide.
 func (config *Config) System() map[string]interface{} {
 	return config.system
-}
-
-
-
-
-
-
-
-
-
-
-// Env gets the environment keys to read being configured.
-func (config *Config) Env() []string {
-	var keys []string
-	for _, k := range config.keys {
-		keys = append(keys, config.envPrefix+strings.ToUpper(k))
-	}
-	return keys
-}
-
-// EnvRaw gets the unmodified environment keys to read being configured.
-func (config *Config) EnvRaw() []string {
-	var keys []string
-	for _, k := range config.keys {
-		keys = append(keys, k)
-	}
-	return keys
-}
-
-// Init initializes a Config.
-func (config *Config) Init(app app.Apper, flagSet Flagger, envPrefix string, args ...interface{}) *Config {
-	config.app = app
-	config.flagSet = flagSet
-	config.envPrefix = envPrefix
-	config.env = make(map[string]interface{})
-	config.local = make(map[string]interface{})
-	config.system = make(map[string]interface{})
-	return config
-}
-
-// LoadConfig loads mappings from the configuration file.
-func (config *Config) LoadConfigFile(m map[string]interface{}, path string, onFail ...onfail.OnFail) error {
-	f, err := os.Open(path)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-	return yaml.NewDecoder(f).Decode(m)
-}
-
-// LoadEnv loads mappings from the environment.
-func (config *Config) LoadEnv(m map[string]interface{}, onFail ...onfail.OnFail) {
-	for _, k := range config.keys {
-		if v := os.Getenv(config.envPrefix+strings.ToUpper(k)); len(v) > 0 {
-			config.map_[k] = v
-		}
-	}
 }
