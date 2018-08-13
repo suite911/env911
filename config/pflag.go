@@ -27,4 +27,8 @@ func (pflag PFlag) CountVarP(p *int, name, shorthand string, usage string) {
 	panic("github.com/ogier/pflag does not support the Count* functions")
 }
 
+func (pflag PFlag) CountWorks() bool {
+	return false
+}
+
 // TODO: make my own CC0-1.0-licensed POSIX-compliant flag replacement library that does
