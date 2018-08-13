@@ -148,10 +148,10 @@ func (config Configger) IntVarP(p *int, name, shorthand string, value int, usage
 }
 
 // Load loads mappings from the several sources.
-func (config Configger) Load(onFail ...onfail.OnFail) error {
-	config.LoadConfigFile(config.System(), config.App().SystemConfigFile(), ...onFail)
-	config.LoadConfigFile(config.Local(), config.App().LocalConfigFile(), ...onFail)
-	config.LoadEnv(config.Env(), ...onFail)
+func (config Configger) Load() {
+	config.LoadSystem()
+	config.LoadLocal()
+	config.LoadEnv()
 }
 
 func (config Configger) String(name, value, usage string) {
