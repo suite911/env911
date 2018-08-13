@@ -1,4 +1,4 @@
-![release-beta](https://rawgit.com/amy911/assets/master/shields/release-beta-yellogreen.svg)
+![release-beta](https://rawgit.com/amy911/assets/master/shields/release-beta-yellowgreen.svg)
 ![api-candidate](https://rawgit.com/amy911/assets/master/shields/api-candidate-green.svg)
 ![abi-alpha](https://rawgit.com/amy911/assets/master/shields/abi-alpha-orange.svg)
 [![Build Status](https://travis-ci.org/amy911/env911.svg?branch=master)](https://travis-ci.org/amy911/env911)
