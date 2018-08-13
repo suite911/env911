@@ -26,8 +26,14 @@ type Configger interface {
 	// Local gets the map of keys to values configured locally.
 	Local() map[string]interface{}
 
+	// Prefix gets the environment variable prefix.
+	Prefix() string
+
 	// SetAutoBind sets whether or not to use automatic environment variable binding.
 	SetAutoBind(bool) Configger
+
+	// SetPrefix sets the environment variable prefix.
+	SetPrefix(string) Configger
 
 	// System gets the map of keys to values configured system-wide.
 	System() map[string]interface{}
