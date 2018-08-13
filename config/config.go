@@ -63,6 +63,27 @@ func (config *Config) FlagSet() Flagger {
 	return config.flagSet
 }
 
+// Get gets the value associated with key from the configuration sources
+func (config *Config) Get(key string) interface{} {
+	if v, ok := config.Env(); ok {
+		return v
+	}
+	if v, ok := config.Local(); ok {
+		return v
+	}
+	if v, ok := config.System(); ok {
+		return v
+	}
+	return nil
+}
+
+// Load loads mappings from the several sources.
+func (config *Config) Load() {
+	config.LoadSystem()
+	config.LoadLocal()
+	config.LoadEnv()
+}
+
 // LoadEnv loads mappings from environment variables.
 func (config *Config) LoadEnv() {
 	for _, key := range config.keys {
