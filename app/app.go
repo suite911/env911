@@ -6,6 +6,7 @@ import "path/filepath"
 type App struct {
 	vendor, name, path string
 
+	bin              string
 	cache            string
 	data             string
 	desktop          string
@@ -45,6 +46,11 @@ func (app *App) Init(args ...interface{}) *App {
 	app.localConfigFile = filepath.Join(app.localConfig, "config.yml")
 	app.systemConfigFile = filepath.Join(app.systemConfig, "config.yml")
 	return app
+}
+
+// Bin returns the full path to the directory in which the running executable is located.
+func (app App) Bin() string {
+	return app.bin
 }
 
 // Cache returns the full path to a local app cache directory.
