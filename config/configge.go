@@ -49,17 +49,17 @@ type Configger interface {
 	// Prefix gets the environment variable prefix.
 	Prefix() string
 
+	// QueueStore queues a single key-value pair for storage into the local configuration file upon the next call to Save.
+	QueueStore(string, interface{}) Configger
+
 	// Save saves changes to the local configuration file.
-	Save() Configger
+	Save() error
 
 	// SetAutoBind sets whether or not to use automatic environment variable binding.
 	SetAutoBind(bool) Configger
 
 	// SetPrefix sets the environment variable prefix.
 	SetPrefix(string) Configger
-
-	// Store stores a single key-value pair into the local configuration file.
-	Store(string, interface{}) Configger
 
 	// System gets the map of keys to values configured system-wide.
 	System() map[string]interface{}
