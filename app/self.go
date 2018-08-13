@@ -16,17 +16,12 @@ func Init(app Apper, onFail ...onfail.OnFail) {
 	self = app
 }
 
-// Cache returns the full path to a local app cache directory.
+// Cache returns the full path to the local app cache directory.
 func Cache() string {
 	return self.Cache()
 }
 
-// Config returns the full path to a local app config directory.
-func Config() string {
-	return self.Config()
-}
-
-// Data returns the full path to a local app data directory.
+// Data returns the full path to the local app data directory.
 func Data() string {
 	return self.Data()
 }
@@ -49,6 +44,16 @@ func Downloads() string {
 // Home returns the full path to the home directory.
 func Home() string {
 	return self.Home()
+}
+
+// LocalConfig returns the full path to a local app configuration directory.
+func LocalConfig() string {
+	return self.LocalConfig()
+}
+
+// LocalConfigFile returns the full path to a local app configuration directory.
+func LocalConfigFile() string {
+	return self.LocalConfigFile()
 }
 
 // Man returns the full path to the man directory.
@@ -74,6 +79,16 @@ func Pictures() string {
 // Screenshots returns the full path to the screenshots directory.
 func Screenshots() string {
 	return self.Screenshots()
+}
+
+// SystemConfig returns the full path to the system app configuration directory.
+func SystemConfig() string {
+	return self.SystemConfig()
+}
+
+// SystemConfigFile returns the full path to the system app configuration directory.
+func SystemConfigFile() string {
+	return self.SystemConfigFile()
 }
 
 // Vendor returns the app vendor.
