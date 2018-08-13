@@ -9,6 +9,7 @@ A [free](https://creativecommons.org/publicdomain/zero/1.0/) configuration libra
 ## API Stability
 - app ![api-candidate](https://rawgit.com/amy911/assets/master/shields/api-candidate-green.svg)
 - config ![api-candidate](https://rawgit.com/amy911/assets/master/shields/api-candidate-green.svg)
+- safesave ![api-stable](https://rawgit.com/amy911/assets/master/shields/api-stable-brightgreen.svg)
 
 Assume any packages not listed in the above are pre-alpha.
 
@@ -24,6 +25,7 @@ go get -u github.com/amy911/env911/...
 ```go
 import "github.com/amy911/env911/app"
 import "github.com/amy911/env911/config"
+import "github.com/amy911/env911/safesave"
 ```
 
 ## Usage Examples
