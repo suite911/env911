@@ -78,10 +78,11 @@ func (config *Config) Get(key string) interface{} {
 }
 
 // Load loads mappings from the several sources.
-func (config *Config) Load() {
+func (config *Config) Load() *Config {
 	config.LoadSystem()
 	config.LoadLocal()
 	config.LoadEnv()
+	return config
 }
 
 // LoadEnv loads mappings from environment variables.
@@ -127,6 +128,31 @@ func (config *Config) Parse(arguments []string) error {
 // Prefix gets the environment variable prefix.
 func (config *Config) Prefix() string {
 	return config.prefix
+}
+
+// QueueStore queues a single key-value pair for storage into the local configuration file upon the next call to Save.
+func (config *Config) QueueStore(key string, value interface{}) *Config {
+	config.Local()[key] = value
+	return config
+}
+
+// Save saves changes to the local configuration file.
+func (config *Config) Save() error {
+	f, err := os.Open(config.App().LocalConfigFile)
+	if err != nil {
+		return err
+	}
+	enc := yaml.NewEncoder(f)
+	if err := enc.Encode(config.local); err != nil {
+		_ = enc.Close()
+		_ = f.Close()
+		return err
+	}
+	if err := enc.Close(); err != nil {
+		_ = f.Close()
+		return err
+	}
+	return f.Close()
 }
 
 // SetAutoBind sets whether or not to use automatic environment variable binding.
