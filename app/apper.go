@@ -24,6 +24,9 @@ type Apper interface {
 	// Home gets the full path to the current user's Home directory.
 	Home() string
 
+	// Man gets the full path to the man directory.
+	Man() string
+
 	// Name gets the app name.
 	Name() string
 
