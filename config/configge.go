@@ -23,6 +23,15 @@ type Configger interface {
 	// FlagSet gets the flag set used for configuration.
 	FlagSet() Flagger
 
+	// LoadEnv loads mappings from environment variables.
+	LoadEnv()
+
+	// LoadLocal loads mappings from the local configuration file.
+	LoadLocal() error
+
+	// LoadSystem loads mappings from the system configuration file.
+	LoadSystem() error
+
 	// Local gets the map of keys to values configured locally.
 	Local() map[string]interface{}
 
