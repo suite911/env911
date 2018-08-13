@@ -6,12 +6,6 @@ type Apper interface {
 	// Cache gets the full path to the local app cache directory.
 	Cache() string
 
-	// Config gets the full path to the local app configuration directory.
-	Config() string
-
-	// ConfigFile gets the full path to the local app configuration file.
-	ConfigFile() string
-
 	// Data gets the full path to the local app data directory.
 	Data() string
 
@@ -30,6 +24,12 @@ type Apper interface {
 	// Name gets the app name.
 	Name() string
 
+	// LocalConfig gets the full path to the local app configuration directory.
+	LocalConfig() string
+
+	// LocalConfigFile gets the full path to the local app configuration file.
+	LocalConfigFile() string
+
 	// Path gets the app path.
 	Path() string
 
@@ -38,6 +38,12 @@ type Apper interface {
 
 	// Screenshots gets the full path to the current user's Screenshots directory.
 	Screenshots() string
+
+	// SystemConfig gets the full path to the system app configuration directory.
+	SystemConfig() string
+
+	// SystemConfigFile gets the full path to the system app configuration file.
+	SystemConfigFile() string
 
 	// Vendor gets the app vendor.
 	Vendor() string
