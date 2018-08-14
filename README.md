@@ -42,7 +42,7 @@ import (
 )
 
 func init() {
-	easyinit.InitAll("MYAPP_", nil, "MyCompany", "myapp")
+	env911.InitAll("MYAPP_", nil, "MyCompany", "myapp")
 }
 
 func main() {
