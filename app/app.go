@@ -56,7 +56,7 @@ func (app *App) Init(path ...string) *App {
 		}
 	}
 	app.exe = exeMaybeWithoutSymlinks
-	app.osInit(args...)
+	app.osInit()
 	app.localConfigFile = filepath.Join(app.localConfig, "config.yml")
 	app.localConfigNew = filepath.Join(app.localConfig, "config.new")
 	app.systemConfigFile = filepath.Join(app.systemConfig, "config.yml")
