@@ -48,9 +48,11 @@ func init() {
 func main() {
 	verbose := false
 	config.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
-	config.Parse()
+	config.LoadAndParse()
 	if verbose {
-		fmt.Printfn("Vendor: ", app.Vendor())
+		fmt.Printfn("Vendor:", app.Vendor()) // prints "MyCompany"
+		fmt.Printfn("App:   ", app.Name()) // prints "myapp"
+		fmt.Printfn("Path:  ", app.Path()) // prints "MyCompany/myapp" on POSIX systems
 	}
 }
 ```
