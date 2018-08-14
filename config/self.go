@@ -110,12 +110,12 @@ func IntVarP(p *int, name, shorthand string, value int, usage string) {
 
 // Load loads mappings from the several sources.
 func Load() Configger {
-	self.Load()
+	return self.Load()
 }
 
 // LoadAndParse loads mappings from the several sources and parses flags on the command line.
 func LoadAndParse() {
-	return self.LoadAndParse()
+	self.LoadAndParse()
 }
 
 // LoadEnv loads mappings from environment variables.
@@ -170,22 +170,22 @@ func SetPrefix(value string) Configger {
 
 // Forward the call to the Flagger.
 func String(name, value, usage string) *string {
-	return self.Int(name, value, usage)
+	return self.String(name, value, usage)
 }
 
 // Forward the call to the Flagger.
 func StringP(name, shorthand, value string, usage string) *string {
-	return self.IntP(name, shorthand, value, usage)
+	return self.StringP(name, shorthand, value, usage)
 }
 
 // Forward the call to the Flagger.
 func StringVar(p *string, name, value, usage string) {
-	self.IntVar(p, name, value, usage)
+	self.StringVar(p, name, value, usage)
 }
 
 // Forward the call to the Flagger.
 func StringVarP(p *string, name, shorthand, value string, usage string) {
-	self.IntVarP(p, name, shorthand, value, usage)
+	self.StringVarP(p, name, shorthand, value, usage)
 }
 
 // System gets the map of keys to values configured system-wide.
