@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-func (app *App) osInit(args ...interface{}) {
+func (app *App) osInit() {
 	home := os.Getenv("USERPROFILE")
 	if len(home) < 1 {
 		home = `C:\Users\Administrator`
