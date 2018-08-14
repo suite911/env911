@@ -142,7 +142,7 @@ func QueueStore(key string, value interface{}) Configger {
 
 // Save atomically saves changes to the local configuration file.
 func Save() error {
-	retur self.Save()
+	return self.Save()
 }
 
 // SetAutoBind sets whether or not to use automatic environment variable binding.
