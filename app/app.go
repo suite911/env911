@@ -28,24 +28,22 @@ type App struct {
 }
 
 // New creates a new App.
-func New(args ...interface{}) *App {
-	return new(App).Init(args...)
+func New(path ...string) *App {
+	return new(App).Init(path...)
 }
 
 // Init initializes an App.
-func (app *App) Init(args ...interface{}) *App {
+func (app *App) Init(path ...string) *App {
 	var pathElems []string
-	for _, arg := range args {
-		if str, ok := arg.(string); ok {
-			if len(str) < 1 {
-				continue
-			}
-			pathElems = append(pathElems, str)
-			if len(app.vendor) < 1 {
-				app.vendor = app.name
-			}
-			app.name = str
+	for _, elem := range path {
+		if len(elem) < 1 {
+			continue
 		}
+		pathElems = append(pathElems, elem)
+		if len(app.vendor) < 1 {
+			app.vendor = app.name
+		}
+		app.name = elem
 	}
 	app.path = filepath.Join(pathElems...)
 	exeWithSymlinks, err := os.Executable()
