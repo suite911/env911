@@ -27,17 +27,17 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(app app.Apper, flagSet Flagger, prefix string) *Config {
-	return new(Config).Init(app, flagSet, prefix)
+func New(prefix string, flagSet Flagger, app app.Apper) *Config {
+	return new(Config).Init(prefix, flagSet, app)
 }
 
 // Init initializes a Config.
-func (config *Config) Init(app app.Apper, flagSet Flagger, prefix string) *Config {
-	if app == nil {
-		panic("You must specify an app")
-	}
+func (config *Config) Init(prefix string, flagSet Flagger, app app.Apper) *Config {
 	if flagSet == nil {
 		flagSet = PFlag{pflag.CommandLine}
+	}
+	if app == nil {
+		panic("You must specify an app")
 	}
 	config.app = app
 	config.flagSet = flagSet
