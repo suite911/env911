@@ -6,19 +6,19 @@ type PFlag struct {
 	*pflag.FlagSet
 }
 
-func (pflag PFlag) Count(name string, usage string) *int {
+func (pflag PFlag) Count(name string, by int, usage string) *int {
 	panic("github.com/ogier/pflag does not support the Count* functions")
 }
 
-func (pflag PFlag) CountP(name, shorthand string, usage string) *int {
+func (pflag PFlag) CountP(name, shorthand string, by int, usage string) *int {
 	panic("github.com/ogier/pflag does not support the Count* functions")
 }
 
-func (pflag PFlag) CountVar(p *int, name string, usage string) {
+func (pflag PFlag) CountVar(p *int, name string, by int, usage string) {
 	panic("github.com/ogier/pflag does not support the Count* functions")
 }
 
-func (pflag PFlag) CountVarP(p *int, name, shorthand string, usage string) {
+func (pflag PFlag) CountVarP(p *int, name, shorthand string, by int, usage string) {
 	panic("github.com/ogier/pflag does not support the Count* functions")
 }
 
