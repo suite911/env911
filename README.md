@@ -26,9 +26,31 @@ go get -u github.com/amy911/env911/...
 ```go
 import "github.com/amy911/env911/app"
 import "github.com/amy911/env911/config"
-import "github.com/amy911/env911/easyinit"
 import "github.com/amy911/env911/safesave"
 ```
 
 ## Usage Examples
-For now, see the README.md in each subdirectory for examples of that package.
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/amy911/env911"
+	"github.com/amy911/env911/app"
+	"github.com/amy911/env911/config"
+)
+
+func init() {
+	easyinit.InitAll("MYAPP_", nil, "MyCompany", "myapp")
+}
+
+func main() {
+	verbose := false
+	config.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
+	config.Parse()
+	if verbose {
+		fmt.Printfn("Vendor: ", app.Vendor())
+	}
+}
+```
