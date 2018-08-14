@@ -59,7 +59,7 @@ func (config *Config) AutoBind() bool {
 }
 
 // Bind binds the an environment key.
-func (config *Config) Bind(key string) *Config {
+func (config *Config) Bind(key string) Configger {
 	config.keys = append(config.keys, [2]string{config.prefix, key})
 	return config
 }
@@ -173,7 +173,7 @@ func (config *Config) IntVarP(p *int, name, shorthand string, value int, usage s
 }
 
 // Load loads mappings from the several sources.
-func (config *Config) Load() *Config {
+func (config *Config) Load() Configger {
 	config.LoadSystem()
 	config.LoadLocal()
 	config.LoadEnv()
@@ -231,7 +231,7 @@ func (config *Config) Prefix() string {
 }
 
 // QueueStore queues a single key-value pair for storage into the local configuration file upon the next call to Save.
-func (config *Config) QueueStore(key string, value interface{}) *Config {
+func (config *Config) QueueStore(key string, value interface{}) Configger {
 	config.Local()[key] = value
 	return config
 }
@@ -256,13 +256,13 @@ func (config *Config) Save() error {
 }
 
 // SetAutoBind sets whether or not to use automatic environment variable binding.
-func (config *Config) SetAutoBind(value bool) *Config {
+func (config *Config) SetAutoBind(value bool) Configger {
 	config.autoBind = value
 	return config
 }
 
 // SetPrefix sets the environment variable prefix.
-func (config *Config) SetPrefix(value string) *Config {
+func (config *Config) SetPrefix(value string) Configger {
 	config.prefix = value
 	return config
 }
