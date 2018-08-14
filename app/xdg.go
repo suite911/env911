@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-func (app *App) osInit(args ...interface{}) {
+func (app *App) osInit() {
 	home := os.Getenv("HOME")
 	if len(home) < 1 {
 		home = "/root"
