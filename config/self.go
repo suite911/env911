@@ -33,6 +33,38 @@ func Bind(key string) Configger {
 	return self.Bind(key)
 }
 
+func Bool(name string, value bool, usage string) *bool {
+	return self.Bool(name, value, usage)
+}
+
+func BoolP(name, shorthand string, value bool, usage string) *bool {
+	return self.BoolP(name, shorthand, value, usage)
+}
+
+func BoolVar(p *bool, name string, value bool, usage string) {
+	self.BoolVar(p, name, value, usage)
+}
+
+func BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
+	self.BoolVarP(p, name, shorthand, value, usage)
+}
+
+func Count(name string, by int, usage string) *int {
+	return self.Count(name, value, usage)
+}
+
+func CountP(name, shorthand string, by int, usage string) *int {
+	return self.CountP(name, shorthand, value, usage)
+}
+
+func CountVar(p *int, name string, by int, usage string) {
+	self.CountVar(p, name, value, usage)
+}
+
+func CountVarP(p *int, name, shorthand string, by int, usage string) {
+	self.CountVarP(p, name, shorthand, value, usage)
+}
+
 // Env gets the map of keys to values configured via environment variables.
 func Env() map[string]interface{} {
 	return self.Env()
@@ -48,9 +80,29 @@ func Get(key string) interface{} {
 	return self.Get(key)
 }
 
+func Int(name string, value int, usage string) *int {
+	return self.Int(name, value, usage)
+}
+
+func IntP(name, shorthand string, value int, usage string) *int {
+	return self.IntP(name, shorthand, value, usage)
+}
+
+func IntVar(p *int, name string, value int, usage string) {
+	self.IntVar(p, name, value, usage)
+}
+
+func IntVarP(p *int, name, shorthand string, value int, usage string) {
+	self.IntVarP(p, name, shorthand, value, usage)
+}
+
 // Load loads mappings from the several sources.
-func Load() {
+func Load() Configger {
 	self.Load()
+}
+
+func LoadAndParse() {
+	return self.LoadAndParse()
 }
 
 // LoadEnv loads mappings from environment variables.
@@ -73,9 +125,24 @@ func Local() map[string]interface{} {
 	return self.Local()
 }
 
+// Parse parses flags on the command line.
+func Parse(arguments []string) error {
+	return self.Parse(arguments)
+}
+
 // Prefix gets the environment variable prefix.
 func Prefix() string {
 	return self.Prefix()
+}
+
+// QueueStore queues a single key-value pair for storage into the local configuration file upon the next call to Save.
+func QueueStore(key string, value interface{}) Configger {
+	return self.QueueStore(key, value)
+}
+
+// Save atomically saves changes to the local configuration file.
+func Save() error {
+	retur self.Save()
 }
 
 // SetAutoBind sets whether or not to use automatic environment variable binding.
@@ -86,6 +153,22 @@ func SetAutoBind(value bool) Configger {
 // SetPrefix sets the environment variable prefix.
 func SetPrefix(value string) Configger {
 	return self.SetPrefix(value)
+}
+
+func String(name, value, usage string) *string {
+	return self.Int(name, value, usage)
+}
+
+func StringP(name, shorthand, value string, usage string) *string {
+	return self.IntP(name, shorthand, value, usage)
+}
+
+func StringVar(p *string, name, value, usage string) {
+	self.IntVar(p, name, value, usage)
+}
+
+func StringVarP(p *string, name, shorthand, value string, usage string) {
+	self.IntVarP(p, name, shorthand, value, usage)
 }
 
 // System gets the map of keys to values configured system-wide.
