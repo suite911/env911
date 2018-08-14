@@ -33,34 +33,42 @@ func Bind(key string) Configger {
 	return self.Bind(key)
 }
 
+// Forward the call to the Flagger.
 func Bool(name string, value bool, usage string) *bool {
 	return self.Bool(name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func BoolP(name, shorthand string, value bool, usage string) *bool {
 	return self.BoolP(name, shorthand, value, usage)
 }
 
+// Forward the call to the Flagger.
 func BoolVar(p *bool, name string, value bool, usage string) {
 	self.BoolVar(p, name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
 	self.BoolVarP(p, name, shorthand, value, usage)
 }
 
+// Forward the call to the Flagger.
 func Count(name string, by int, usage string) *int {
 	return self.Count(name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func CountP(name, shorthand string, by int, usage string) *int {
 	return self.CountP(name, shorthand, value, usage)
 }
 
+// Forward the call to the Flagger.
 func CountVar(p *int, name string, by int, usage string) {
 	self.CountVar(p, name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func CountVarP(p *int, name, shorthand string, by int, usage string) {
 	self.CountVarP(p, name, shorthand, value, usage)
 }
@@ -80,18 +88,22 @@ func Get(key string) interface{} {
 	return self.Get(key)
 }
 
+// Forward the call to the Flagger.
 func Int(name string, value int, usage string) *int {
 	return self.Int(name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func IntP(name, shorthand string, value int, usage string) *int {
 	return self.IntP(name, shorthand, value, usage)
 }
 
+// Forward the call to the Flagger.
 func IntVar(p *int, name string, value int, usage string) {
 	self.IntVar(p, name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func IntVarP(p *int, name, shorthand string, value int, usage string) {
 	self.IntVarP(p, name, shorthand, value, usage)
 }
@@ -101,6 +113,7 @@ func Load() Configger {
 	self.Load()
 }
 
+// LoadAndParse loads mappings from the several sources and parses flags on the command line.
 func LoadAndParse() {
 	return self.LoadAndParse()
 }
@@ -155,18 +168,22 @@ func SetPrefix(value string) Configger {
 	return self.SetPrefix(value)
 }
 
+// Forward the call to the Flagger.
 func String(name, value, usage string) *string {
 	return self.Int(name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func StringP(name, shorthand, value string, usage string) *string {
 	return self.IntP(name, shorthand, value, usage)
 }
 
+// Forward the call to the Flagger.
 func StringVar(p *string, name, value, usage string) {
 	self.IntVar(p, name, value, usage)
 }
 
+// Forward the call to the Flagger.
 func StringVarP(p *string, name, shorthand, value string, usage string) {
 	self.IntVarP(p, name, shorthand, value, usage)
 }
