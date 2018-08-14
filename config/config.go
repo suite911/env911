@@ -64,18 +64,20 @@ func (config *Config) Bind(key string) Configger {
 	return config
 }
 
-func (config *Config) Bool(name string, value bool, usage string) {
-	config.FlagSet().Bool(name, value, usage)
+func (config *Config) Bool(name string, value bool, usage string) *bool {
+	p := config.FlagSet().Bool(name, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
-func (config *Config) BoolP(name, shorthand string, value bool, usage string) {
-	config.FlagSet().BoolP(name, shorthand, value, usage)
+func (config *Config) BoolP(name, shorthand string, value bool, usage string) *bool {
+	p := config.FlagSet().BoolP(name, shorthand, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
 func (config *Config) BoolVar(p *bool, name string, value bool, usage string) {
@@ -92,18 +94,20 @@ func (config *Config) BoolVarP(p *bool, name, shorthand string, value bool, usag
 	}
 }
 
-func (config *Config) Count(name string, by int, usage string) {
-	config.FlagSet().Count(name, by, usage)
+func (config *Config) Count(name string, by int, usage string) *int {
+	p := config.FlagSet().Count(name, by, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
-func (config *Config) CountP(name, shorthand string, by int, usage string) {
-	config.FlagSet().CountP(name, shorthand, by, usage)
+func (config *Config) CountP(name, shorthand string, by int, usage string) *int {
+	p := config.FlagSet().CountP(name, shorthand, by, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
 func (config *Config) CountVar(p *int, name string, by int, usage string) {
@@ -144,18 +148,20 @@ func (config *Config) Get(key string) interface{} {
 	return nil
 }
 
-func (config *Config) Int(name string, value int, usage string) {
-	config.FlagSet().Int(name, value, usage)
+func (config *Config) Int(name string, value int, usage string) *int {
+	p := config.FlagSet().Int(name, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
-func (config *Config) IntP(name, shorthand string, value int, usage string) {
-	config.FlagSet().IntP(name, shorthand, value, usage)
+func (config *Config) IntP(name, shorthand string, value int, usage string) *int {
+	p := config.FlagSet().IntP(name, shorthand, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
 func (config *Config) IntVar(p *int, name string, value int, usage string) {
@@ -267,18 +273,20 @@ func (config *Config) SetPrefix(value string) Configger {
 	return config
 }
 
-func (config *Config) String(name, value, usage string) {
-	config.FlagSet().String(name, value, usage)
+func (config *Config) String(name, value, usage string) *string {
+	p := config.FlagSet().String(name, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
-func (config *Config) StringP(name, shorthand, value string, usage string) {
-	config.FlagSet().StringP(name, shorthand, value, usage)
+func (config *Config) StringP(name, shorthand, value string, usage string) *string {
+	p := config.FlagSet().StringP(name, shorthand, value, usage)
 	if config.AutoBind() {
 		config.Bind(name)
 	}
+	return p
 }
 
 func (config *Config) StringVar(p *string, name, value, usage string) {
