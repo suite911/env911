@@ -55,22 +55,22 @@ func BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
 
 // Forward the call to the Flagger.
 func Count(name string, by int, usage string) *int {
-	return self.Count(name, value, usage)
+	return self.Count(name, by, usage)
 }
 
 // Forward the call to the Flagger.
 func CountP(name, shorthand string, by int, usage string) *int {
-	return self.CountP(name, shorthand, value, usage)
+	return self.CountP(name, shorthand, by, usage)
 }
 
 // Forward the call to the Flagger.
 func CountVar(p *int, name string, by int, usage string) {
-	self.CountVar(p, name, value, usage)
+	self.CountVar(p, name, by, usage)
 }
 
 // Forward the call to the Flagger.
 func CountVarP(p *int, name, shorthand string, by int, usage string) {
-	self.CountVarP(p, name, shorthand, value, usage)
+	self.CountVarP(p, name, shorthand, by, usage)
 }
 
 // Env gets the map of keys to values configured via environment variables.
