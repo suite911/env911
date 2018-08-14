@@ -62,7 +62,7 @@ type Configger interface {
 	// Load loads mappings from the several sources.
 	Load() Configger
 
-	// Load and Parse.
+	// LoadAndParse loads mappings from the several sources and parses flags on the command line.
 	LoadAndParse()
 
 	// LoadEnv loads mappings from environment variables.
