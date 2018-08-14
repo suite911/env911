@@ -16,6 +16,11 @@ func Init(app Apper, onFail ...onfail.OnFail) {
 	self = app
 }
 
+// Bin returns the full path to the directory in which the running executable is located.
+func Bin() string {
+	return self.Bin()
+}
+
 // Cache returns the full path to the local app cache directory.
 func Cache() string {
 	return self.Cache()
@@ -39,6 +44,11 @@ func Documents() string {
 // Downloads returns the full path to the downloads directory.
 func Downloads() string {
 	return self.Downloads()
+}
+
+// Exe returns the full path to the running executable after attempting to expand symlinks.
+func Exe() string {
+	return self.Exe()
 }
 
 // Home returns the full path to the home directory.
