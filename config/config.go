@@ -64,6 +64,7 @@ func (config *Config) Bind(key string) Configger {
 	return config
 }
 
+// Forward the call to the Flagger.
 func (config *Config) Bool(name string, value bool, usage string) *bool {
 	p := config.FlagSet().Bool(name, value, usage)
 	if config.AutoBind() {
@@ -72,6 +73,7 @@ func (config *Config) Bool(name string, value bool, usage string) *bool {
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) BoolP(name, shorthand string, value bool, usage string) *bool {
 	p := config.FlagSet().BoolP(name, shorthand, value, usage)
 	if config.AutoBind() {
@@ -80,6 +82,7 @@ func (config *Config) BoolP(name, shorthand string, value bool, usage string) *b
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) BoolVar(p *bool, name string, value bool, usage string) {
 	config.FlagSet().BoolVar(p, name, value, usage)
 	if config.AutoBind() {
@@ -87,6 +90,7 @@ func (config *Config) BoolVar(p *bool, name string, value bool, usage string) {
 	}
 }
 
+// Forward the call to the Flagger.
 func (config *Config) BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
 	config.FlagSet().BoolVarP(p, name, shorthand, value, usage)
 	if config.AutoBind() {
@@ -94,6 +98,7 @@ func (config *Config) BoolVarP(p *bool, name, shorthand string, value bool, usag
 	}
 }
 
+// Forward the call to the Flagger.
 func (config *Config) Count(name string, by int, usage string) *int {
 	p := config.FlagSet().Count(name, by, usage)
 	if config.AutoBind() {
@@ -102,6 +107,7 @@ func (config *Config) Count(name string, by int, usage string) *int {
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) CountP(name, shorthand string, by int, usage string) *int {
 	p := config.FlagSet().CountP(name, shorthand, by, usage)
 	if config.AutoBind() {
@@ -110,6 +116,7 @@ func (config *Config) CountP(name, shorthand string, by int, usage string) *int 
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) CountVar(p *int, name string, by int, usage string) {
 	config.FlagSet().CountVar(p, name, by, usage)
 	if config.AutoBind() {
@@ -117,6 +124,7 @@ func (config *Config) CountVar(p *int, name string, by int, usage string) {
 	}
 }
 
+// Forward the call to the Flagger.
 func (config *Config) CountVarP(p *int, name, shorthand string, by int, usage string) {
 	config.FlagSet().CountVarP(p, name, shorthand, by, usage)
 	if config.AutoBind() {
@@ -148,6 +156,7 @@ func (config *Config) Get(key string) interface{} {
 	return nil
 }
 
+// Forward the call to the Flagger.
 func (config *Config) Int(name string, value int, usage string) *int {
 	p := config.FlagSet().Int(name, value, usage)
 	if config.AutoBind() {
@@ -156,6 +165,7 @@ func (config *Config) Int(name string, value int, usage string) *int {
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) IntP(name, shorthand string, value int, usage string) *int {
 	p := config.FlagSet().IntP(name, shorthand, value, usage)
 	if config.AutoBind() {
@@ -164,6 +174,7 @@ func (config *Config) IntP(name, shorthand string, value int, usage string) *int
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) IntVar(p *int, name string, value int, usage string) {
 	config.FlagSet().IntVar(p, name, value, usage)
 	if config.AutoBind() {
@@ -171,6 +182,7 @@ func (config *Config) IntVar(p *int, name string, value int, usage string) {
 	}
 }
 
+// Forward the call to the Flagger.
 func (config *Config) IntVarP(p *int, name, shorthand string, value int, usage string) {
 	config.FlagSet().IntVarP(p, name, shorthand, value, usage)
 	if config.AutoBind() {
@@ -274,6 +286,7 @@ func (config *Config) SetPrefix(value string) Configger {
 	return config
 }
 
+// Forward the call to the Flagger.
 func (config *Config) String(name, value, usage string) *string {
 	p := config.FlagSet().String(name, value, usage)
 	if config.AutoBind() {
@@ -282,6 +295,7 @@ func (config *Config) String(name, value, usage string) *string {
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) StringP(name, shorthand, value string, usage string) *string {
 	p := config.FlagSet().StringP(name, shorthand, value, usage)
 	if config.AutoBind() {
@@ -290,6 +304,7 @@ func (config *Config) StringP(name, shorthand, value string, usage string) *stri
 	return p
 }
 
+// Forward the call to the Flagger.
 func (config *Config) StringVar(p *string, name, value, usage string) {
 	config.FlagSet().StringVar(p, name, value, usage)
 	if config.AutoBind() {
@@ -297,6 +312,7 @@ func (config *Config) StringVar(p *string, name, value, usage string) {
 	}
 }
 
+// Forward the call to the Flagger.
 func (config *Config) StringVarP(p *string, name, shorthand, value string, usage string) {
 	config.FlagSet().StringVarP(p, name, shorthand, value, usage)
 	if config.AutoBind() {
