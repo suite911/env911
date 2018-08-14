@@ -26,6 +26,7 @@ go get -u github.com/amy911/env911/...
 ```go
 import "github.com/amy911/env911/app"
 import "github.com/amy911/env911/config"
+import "github.com/amy911/env911/easyinit"
 import "github.com/amy911/env911/safesave"
 ```
 
