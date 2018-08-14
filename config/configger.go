@@ -15,10 +15,10 @@ type Configger interface {
 	Bind(string) Configger
 
 	// Forward the call to the Flagger.
-	Bool(name string, value bool, usage string)
+	Bool(name string, value bool, usage string) *bool
 
 	// Forward the call to the Flagger.
-	BoolP(name, shorthand string, value bool, usage string)
+	BoolP(name, shorthand string, value bool, usage string) *bool
 
 	// Forward the call to the Flagger.
 	BoolVar(p *bool, name string, value bool, usage string)
@@ -27,10 +27,10 @@ type Configger interface {
 	BoolVarP(p *bool, name, shorthand string, value bool, usage string)
 
 	// Forward the call to the Flagger.
-	Count(name string, by int, usage string)
+	Count(name string, by int, usage string) *int
 
 	// Forward the call to the Flagger.
-	CountP(name, shorthand string, by int, usage string)
+	CountP(name, shorthand string, by int, usage string) *int
 
 	// Forward the call to the Flagger.
 	CountVar(p *int, name string, by int, usage string)
@@ -48,10 +48,10 @@ type Configger interface {
 	Get(key string) interface{}
 
 	// Forward the call to the Flagger.
-	Int(name string, value int, usage string)
+	Int(name string, value int, usage string) *int
 
 	// Forward the call to the Flagger.
-	IntP(name, shorthand string, value int, usage string)
+	IntP(name, shorthand string, value int, usage string) *int
 
 	// Forward the call to the Flagger.
 	IntVar(p *int, name string, value int, usage string)
@@ -96,10 +96,10 @@ type Configger interface {
 	SetPrefix(string) Configger
 
 	// Forward the call to the Flagger.
-	String(name, value, usage string)
+	String(name, value, usage string) *string
 
 	// Forward the call to the Flagger.
-	StringP(name, shorthand, value string, usage string)
+	StringP(name, shorthand, value string, usage string) *string
 
 	// Forward the call to the Flagger.
 	StringVar(p *string, name, value, usage string)
