@@ -3,7 +3,7 @@ package config
 import "github.com/ogier/pflag"
 
 type PFlag struct {
-	pflag.FlagSet
+	*pflag.FlagSet
 }
 
 func (pflag PFlag) Count(name string, usage string) {
