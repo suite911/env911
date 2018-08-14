@@ -186,6 +186,7 @@ func (config *Config) Load() Configger {
 	return config
 }
 
+// LoadAndParse loads mappings from the several sources and parses flags on the command line.
 func (config *Config) LoadAndParse() {
 	config.Load()
 	config.Parse(os.Args)
