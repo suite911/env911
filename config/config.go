@@ -7,6 +7,7 @@ import (
 	"github.com/amy911/env911/app"
 	"github.com/amy911/env911/safesave"
 
+	"github.com/ogier/pflag"
 	"gopkg.in/yaml.v2"
 )
 
@@ -32,6 +33,12 @@ func New(app app.Apper, flagSet Flagger, prefix string) *Config {
 
 // Init initializes a Config.
 func (config *Config) Init(app app.Apper, flagSet Flagger, prefix string) *Config {
+	if app == nil {
+		panic("You must specify an app")
+	}
+	if flagSet == nil {
+		flagSet = PFlag{pflag.CommandLine}
+	}
 	config.app = app
 	config.flagSet = flagSet
 	config.prefix = prefix
