@@ -16,7 +16,7 @@ import (
 // Config describes the app configuration.
 type Config struct {
 	app     app.Apper
-	flagSet *flagger.Flagger
+	flagSet flagger.Flagger
 
 	env    map[string]interface{}
 	local  map[string]interface{}
@@ -29,12 +29,12 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(prefix string, flagSet *flagger.Flagger, app app.Apper) *Config {
+func New(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 	return new(Config).Init(prefix, flagSet, app)
 }
 
 // Init initializes a Config.
-func (config *Config) Init(prefix string, flagSet *flagger.Flagger, app app.Apper) *Config {
+func (config *Config) Init(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 	if flagSet == nil {
 		flagSet = &flagger.PFlagSet{FlagSet: pflag.CommandLine}
 	}
