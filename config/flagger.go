@@ -16,6 +16,9 @@ type Flagger interface {
 	IntVar(*int, string, int, string)
 	IntVarP(*int, string, string, int, string)
 	Parse([]string) error
+	PVersionsWork() bool
+	SetUsageFooter(string)
+	SetUsageHeader(string)
 	String(string, string, string) *string
 	StringP(string, string, string, string) *string
 	StringVar(*string, string, string, string)
