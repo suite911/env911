@@ -36,7 +36,7 @@ func New(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 // Init initializes a Config.
 func (config *Config) Init(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 	if flagSet == nil {
-		flagSet = &flagger.PFlagSet{FlagSet: pflag.CommandLine}
+		flagSet = flagger.PFlagSet{FlagSet: pflag.CommandLine}
 	}
 	if app == nil {
 		panic("You must specify an app")
