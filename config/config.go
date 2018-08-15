@@ -140,7 +140,7 @@ func (config *Config) Env() map[string]interface{} {
 }
 
 // FlagSet gets the flag set used for configuration.
-func (config *Config) FlagSet() *flagger.Flagger {
+func (config *Config) FlagSet() flagger.Flagger {
 	return config.flagSet
 }
 
