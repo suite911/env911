@@ -3,9 +3,10 @@ package config
 import (
 	"sync"
 
-	"github.com/amy911/error911/onfail"
-
 	"github.com/amy911/env911/app"
+
+	"github.com/amy911/error911/onfail"
+	"github.com/amy911/flag911/flagger"
 )
 
 // Init initializes the configuration for this app.
