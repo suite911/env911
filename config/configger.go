@@ -1,9 +1,9 @@
 package config
 
 import (
-	"github.com/amy911/env911/app"
+	"github.com/suite911/env911/app"
 
-	"github.com/amy911/flag911/flag"
+	"github.com/suite911/flag911/flag"
 )
 
 // Configger is the interface for app configuration.
