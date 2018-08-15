@@ -193,7 +193,7 @@ func (config *Config) System() map[string]interface{} {
 }
 
 func flagHookAutoBind(
-	fs *FlagSet,
+	fs *flag.FlagSet,
 	fn string,
 	p interface{},
 	name string,
