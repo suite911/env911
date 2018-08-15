@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/amy911/env911/app"
 
-	"github.com/amy911/flag911/flagger"
+	"github.com/amy911/flag911/flag"
 )
 
 // Configger is the interface for app configuration.
@@ -18,49 +18,49 @@ type Configger interface {
 	// Bind binds the an environment key.
 	Bind(string) Configger
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	Bool(name string, value bool, usage string) *bool
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	BoolP(name, shorthand string, value bool, usage string) *bool
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	BoolVar(p *bool, name string, value bool, usage string)
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	BoolVarP(p *bool, name, shorthand string, value bool, usage string)
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	Count(name string, by int, usage string) *int
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	CountP(name, shorthand string, by int, usage string) *int
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	CountVar(p *int, name string, by int, usage string)
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	CountVarP(p *int, name, shorthand string, by int, usage string)
 
 	// Env gets the map of keys to values configured via environment variables.
 	Env() map[string]interface{}
 
 	// FlagSet gets the flag set used for configuration.
-	FlagSet() flagger.Flagger
+	FlagSet() *flag.FlagSet
 
 	// Get gets the value associated with key from the configuration sources
 	Get(key string) interface{}
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	Int(name string, value int, usage string) *int
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	IntP(name, shorthand string, value int, usage string) *int
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	IntVar(p *int, name string, value int, usage string)
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	IntVarP(p *int, name, shorthand string, value int, usage string)
 
 	// Load loads mappings from the several sources.
@@ -99,16 +99,16 @@ type Configger interface {
 	// SetPrefix sets the environment variable prefix.
 	SetPrefix(string) Configger
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	String(name, value, usage string) *string
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	StringP(name, shorthand, value string, usage string) *string
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	StringVar(p *string, name, value, usage string)
 
-	// Forward the call to the Flagger.
+	// Forward the call to the flag set.
 	StringVarP(p *string, name, shorthand, value string, usage string)
 
 	// System gets the map of keys to values configured system-wide.
