@@ -16,6 +16,11 @@ func Init(app Apper, onFail ...onfail.OnFail) {
 	self = app
 }
 
+// IsInit reports whether or not this app has been initialized.
+func IsInit() bool {
+	return self != nil
+}
+
 // Bin returns the full path to the directory in which the running executable is located.
 func Bin() string {
 	return self.Bin()
