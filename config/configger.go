@@ -46,7 +46,7 @@ type Configger interface {
 	Env() map[string]interface{}
 
 	// FlagSet gets the flag set used for configuration.
-	FlagSet() *flagger.Flagger
+	FlagSet() flagger.Flagger
 
 	// Get gets the value associated with key from the configuration sources
 	Get(key string) interface{}
