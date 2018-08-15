@@ -3,7 +3,7 @@ package config
 import (
 	"sync"
 
-	"github.com/amy911/amy911/onfail"
+	"github.com/amy911/error911/onfail"
 
 	"github.com/amy911/env911/app"
 )
