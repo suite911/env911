@@ -18,6 +18,11 @@ func Init(config Configger, onFail ...onfail.OnFail) {
 	self = config
 }
 
+// IsInit reports whether or not the configuration for this app has been initialized.
+func IsInit() bool {
+	return self != nil
+}
+
 // App gets the app being configured.
 func App() app.Apper {
 	return self.App()
