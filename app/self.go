@@ -3,7 +3,7 @@ package app
 import (
 	"sync"
 
-	"github.com/amy911/error911/onfail"
+	"github.com/suite911/error911/onfail"
 )
 
 // Init initializes this app.
