@@ -85,7 +85,7 @@ func Env() map[string]interface{} {
 }
 
 // FlagSet gets the flag set used for configuration.
-func FlagSet() *flagger.Flagger {
+func FlagSet() flagger.Flagger {
 	return self.FlagSet()
 }
 
