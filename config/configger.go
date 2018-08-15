@@ -1,6 +1,10 @@
 package config
 
-import "github.com/amy911/env911/app"
+import (
+	"github.com/amy911/env911/app"
+
+	"github.com/amy911/flag911/flagger"
+)
 
 // Configger is the interface for app configuration.
 type Configger interface {
