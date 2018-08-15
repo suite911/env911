@@ -279,6 +279,11 @@ func (config *Config) Save() error {
 // SetAutoBind sets whether or not to use automatic environment variable binding.
 func (config *Config) SetAutoBind(value bool) Configger {
 	config.autoBind = value
+	if value {
+		config.FlagSet().SetHook("github.com/amy911/env911/config", flagHookAutoBind, config)
+	} else {
+		config.FlagSet().DeleteHook("github.com/amy911/env911/config")
+	}
 	return config
 }
 
@@ -325,4 +330,28 @@ func (config *Config) StringVarP(p *string, name, shorthand, value string, usage
 // System gets the map of keys to values configured system-wide.
 func (config *Config) System() map[string]interface{} {
 	return config.system
+}
+
+func flagHookAutoBind(
+	fs *FlagSet,
+	fn string,
+	p interface{},
+	name string,
+	shorthand string,
+	value interface{},
+	usage string,
+	user []interface{},
+) error {
+	if len(user) != 1 {
+		panic("Issue with hijacked hook")
+	}
+	config, ok := user[0].(*Config)
+	if !ok {
+		panic("Issue with hijacked hook")
+	}
+	if !config.AutoBind() {
+		panic("Issue with SetAutoBind or flagHookAutoBind")
+	}
+	config.Bind(name)
+	return nil
 }
