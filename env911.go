@@ -1,10 +1,10 @@
 package env911
 
 import (
-	"github.com/amy911/env911/app"
-	"github.com/amy911/env911/config"
+	"github.com/suite911/env911/app"
+	"github.com/suite911/env911/config"
 
-	"github.com/amy911/flag911/flag"
+	"github.com/suite911/flag911/flag"
 )
 
 // InitAll initializes every part of env911 at once.
