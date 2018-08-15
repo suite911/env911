@@ -6,7 +6,7 @@ import (
 	"github.com/amy911/env911/app"
 
 	"github.com/amy911/error911/onfail"
-	"github.com/amy911/flag911/flagger"
+	"github.com/amy911/flag911/flag"
 )
 
 // Init initializes the configuration for this app.
@@ -39,42 +39,42 @@ func Bind(key string) Configger {
 	return self.Bind(key)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func Bool(name string, value bool, usage string) *bool {
 	return self.Bool(name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func BoolP(name, shorthand string, value bool, usage string) *bool {
 	return self.BoolP(name, shorthand, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func BoolVar(p *bool, name string, value bool, usage string) {
 	self.BoolVar(p, name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func BoolVarP(p *bool, name, shorthand string, value bool, usage string) {
 	self.BoolVarP(p, name, shorthand, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func Count(name string, by int, usage string) *int {
 	return self.Count(name, by, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func CountP(name, shorthand string, by int, usage string) *int {
 	return self.CountP(name, shorthand, by, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func CountVar(p *int, name string, by int, usage string) {
 	self.CountVar(p, name, by, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func CountVarP(p *int, name, shorthand string, by int, usage string) {
 	self.CountVarP(p, name, shorthand, by, usage)
 }
@@ -85,7 +85,7 @@ func Env() map[string]interface{} {
 }
 
 // FlagSet gets the flag set used for configuration.
-func FlagSet() flagger.Flagger {
+func FlagSet() *flag.FlagSet {
 	return self.FlagSet()
 }
 
@@ -94,22 +94,22 @@ func Get(key string) interface{} {
 	return self.Get(key)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func Int(name string, value int, usage string) *int {
 	return self.Int(name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func IntP(name, shorthand string, value int, usage string) *int {
 	return self.IntP(name, shorthand, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func IntVar(p *int, name string, value int, usage string) {
 	self.IntVar(p, name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func IntVarP(p *int, name, shorthand string, value int, usage string) {
 	self.IntVarP(p, name, shorthand, value, usage)
 }
@@ -174,22 +174,22 @@ func SetPrefix(value string) Configger {
 	return self.SetPrefix(value)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func String(name, value, usage string) *string {
 	return self.String(name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func StringP(name, shorthand, value string, usage string) *string {
 	return self.StringP(name, shorthand, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func StringVar(p *string, name, value, usage string) {
 	self.StringVar(p, name, value, usage)
 }
 
-// Forward the call to the Flagger.
+// Forward the call to the flag set.
 func StringVarP(p *string, name, shorthand, value string, usage string) {
 	self.StringVarP(p, name, shorthand, value, usage)
 }
