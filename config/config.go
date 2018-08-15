@@ -4,10 +4,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/amy911/env911/app"
-	"github.com/amy911/env911/safesave"
+	"github.com/suite911/env911/app"
+	"github.com/suite911/env911/safesave"
 
-	"github.com/amy911/flag911/flag"
+	"github.com/suite911/flag911/flag"
 
 	"github.com/ogier/pflag"
 	"gopkg.in/yaml.v2"
@@ -42,7 +42,7 @@ func (config *Config) Init(prefix string, flagSet *flag.FlagSet, app app.Apper) 
 		panic("You must specify an app")
 	}
 	config.app = app
-	flagSet.SetHook("github.com/amy911/env911/config", flagHookAutoBind, config)
+	flagSet.SetHook("github.com/suite911/env911/config", flagHookAutoBind, config)
 	config.flagSet = flagSet
 	config.prefix = prefix
 	config.env = make(map[string]interface{})
