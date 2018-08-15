@@ -7,6 +7,8 @@ import (
 	"github.com/amy911/env911/app"
 	"github.com/amy911/env911/safesave"
 
+	"github.com/amy911/flag911/flagger"
+
 	"github.com/ogier/pflag"
 	"gopkg.in/yaml.v2"
 )
@@ -14,7 +16,7 @@ import (
 // Config describes the app configuration.
 type Config struct {
 	app     app.Apper
-	flagSet Flagger
+	flagSet flagger.Flagger
 
 	env    map[string]interface{}
 	local  map[string]interface{}
@@ -27,14 +29,14 @@ type Config struct {
 }
 
 // New creates a new Config.
-func New(prefix string, flagSet Flagger, app app.Apper) *Config {
+func New(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 	return new(Config).Init(prefix, flagSet, app)
 }
 
 // Init initializes a Config.
-func (config *Config) Init(prefix string, flagSet Flagger, app app.Apper) *Config {
+func (config *Config) Init(prefix string, flagSet flagger.Flagger, app app.Apper) *Config {
 	if flagSet == nil {
-		flagSet = PFlag{pflag.CommandLine}
+		flagSet = flagger.PFlagSet{FlagSet: pflag.CommandLine}
 	}
 	if app == nil {
 		panic("You must specify an app")
