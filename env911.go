@@ -4,11 +4,11 @@ import (
 	"github.com/amy911/env911/app"
 	"github.com/amy911/env911/config"
 
-	"github.com/amy911/flag911/flagger"
+	"github.com/amy911/flag911/flag"
 )
 
 // InitAll initializes every part of env911 at once.
-func InitAll(prefix string, flagSet flagger.Flagger, path ...string) {
+func InitAll(prefix string, flagSet *flag.FlagSet, path ...string) {
 	a := app.New(path...)
 	app.Init(a)
 	c := config.New(prefix, flagSet, a)
