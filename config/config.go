@@ -42,6 +42,7 @@ func (config *Config) Init(prefix string, flagSet *flag.FlagSet, app app.Apper) 
 		panic("You must specify an app")
 	}
 	config.app = app
+	flagSet.SetHook("github.com/amy911/env911/config", flagHookAutoBind, config)
 	config.flagSet = flagSet
 	config.prefix = prefix
 	config.env = make(map[string]interface{})
@@ -177,11 +178,6 @@ func (config *Config) Save() error {
 // SetAutoBind sets whether or not to use automatic environment variable binding.
 func (config *Config) SetAutoBind(value bool) Configger {
 	config.autoBind = value
-	if value {
-		config.FlagSet().SetHook("github.com/amy911/env911/config", flagHookAutoBind, config)
-	} else {
-		config.FlagSet().DeleteHook("github.com/amy911/env911/config")
-	}
 	return config
 }
 
@@ -213,9 +209,8 @@ func flagHookAutoBind(
 	if !ok {
 		panic("Issue with hijacked hook")
 	}
-	if !config.AutoBind() {
-		panic("Issue with SetAutoBind or flagHookAutoBind")
+	if config.AutoBind() {
+		config.Bind(name)
 	}
-	config.Bind(name)
 	return nil
 }
