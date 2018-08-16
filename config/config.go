@@ -102,7 +102,7 @@ func (config *Config) Load() Configger {
 // LoadAndParse loads mappings from the several sources and parses flags on the command line.
 func (config *Config) LoadAndParse() {
 	config.Load()
-	config.Parse(os.Args)
+	config.Parse(os.Args[1:])
 }
 
 // LoadEnv loads mappings from environment variables.
